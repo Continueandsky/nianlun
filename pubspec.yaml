@@ -1,0 +1,57 @@
+name: nianlun
+description: 年轮 — 照片、日记与音乐交织的私人时光容器
+publish_to: "none"
+version: 0.1.0+1
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # 状态管理
+  flutter_riverpod: ^2.5.1
+
+  # 数据存储
+  sqflite: ^2.3.3
+  path_provider: ^2.1.4
+  path: ^1.9.0
+
+  # 音频
+  just_audio: ^0.9.40
+  audio_session: ^0.1.21
+
+  # 照片访问（系统相册 + EXIF）
+  photo_manager: ^3.4.0
+
+  # 系统相册选择器（多选）
+  image_picker: ^1.2.3
+
+  # 读取照片 EXIF 拍摄时间（手动选图时归天用）
+  exif: ^3.3.0
+
+  # 富文本日记（11.x API：QuillSimpleToolbar/QuillEditor.basic + config 参数）
+  flutter_quill: ^11.6.0
+
+  # UI
+  flutter_staggered_grid_view: ^0.7.0
+  intl: ^0.20.3
+
+  # 文件选择（音乐导入）— 13.x 联邦架构，Android 端跟随主项目 compileSdk
+  file_picker: ^13.1.0
+
+  # 备份打包
+  archive: ^3.6.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
