@@ -213,6 +213,29 @@ class AppDatabase {
     return rows.isNotEmpty;
   }
 
+  /// 全部已导入照片的来源 id（批量导入前一次性预热进内存，O(1) 去重）
+  Future<Set<String>> allSourceIds() async {
+    final database = await db;
+    final rows = await database.query('photos', columns: ['source_id']);
+    return rows
+        .map((r) => r['source_id'] as String?)
+        .whereType<String>()
+        .toSet();
+  }
+
+  /// 批量插入照片行（单事务，避免逐条 autocommit 的 fsync 开销）
+  Future<void> insertPhotosBatch(List<Map<String, Object?>> rows) async {
+    if (rows.isEmpty) return;
+    final database = await db;
+    await database.transaction((txn) async {
+      final batch = txn.batch();
+      for (final row in rows) {
+        batch.insert('photos', row);
+      }
+      await batch.commit(noResult: true);
+    });
+  }
+
   Future<int> insertPhoto({
     required int dayId,
     required String relativePath,

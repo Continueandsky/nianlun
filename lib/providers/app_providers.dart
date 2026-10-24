@@ -6,6 +6,7 @@ import 'package:nianlun/services/database.dart';
 import 'package:nianlun/services/day_repository.dart';
 import 'package:nianlun/services/media_attach_service.dart';
 import 'package:nianlun/services/photo_import_service.dart';
+import 'package:nianlun/services/star_layout_service.dart';
 import 'package:nianlun/utils/media_utils.dart';
 
 /// 媒体根目录绝对路径（拼照片/音乐的完整路径用）
@@ -52,6 +53,11 @@ final playerServiceProvider = Provider<PlayerService>((ref) {
   ref.onDispose(service.dispose);
   return service;
 });
+
+/// 星河自定义星体编排（自定义导入向导产出；null = 自动编排）
+final starLayoutProvider = FutureProvider<StarLayout?>(
+  (ref) => StarLayoutService.load(),
+);
 
 /// 数据变更后刷新相关页面（写完日记 / 导入照片 / 换歌之后调用）
 void refreshAllDays(WidgetRef ref) {
