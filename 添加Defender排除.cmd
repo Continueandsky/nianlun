@@ -15,7 +15,7 @@ if %errorlevel% neq 0 (
 
 echo Adding Defender exclusions for Flutter development...
 
-powershell -NoProfile -Command "Add-MpPreference -ExclusionPath 'D:\A_WorkBuddy_Project\nianlun'; Add-MpPreference -ExclusionPath 'D:\Dev\flutter'; Add-MpPreference -ExclusionPath 'C:\Users\a2131\.gradle'; Add-MpPreference -ExclusionProcess 'java.exe'; Add-MpPreference -ExclusionProcess 'dart.exe'; Add-MpPreference -ExclusionProcess 'kotlin-compiler-embeddable.jar'"
+powershell -NoProfile -Command "Add-MpPreference -ExclusionPath '%~dp0'; Add-MpPreference -ExclusionPath 'D:\Dev\flutter'; Add-MpPreference -ExclusionPath '%USERPROFILE%\.gradle'; Add-MpPreference -ExclusionProcess 'java.exe'; Add-MpPreference -ExclusionProcess 'dart.exe'; Add-MpPreference -ExclusionProcess 'kotlin-compiler-embeddable.jar'"
 
 if %errorlevel% neq 0 (
     echo [ERROR] Failed to add exclusions.
@@ -25,9 +25,9 @@ if %errorlevel% neq 0 (
 
 echo.
 echo DONE. Exclusions added:
-echo   - D:\A_WorkBuddy_Project\nianlun   ^(project code and build output^)
+echo   - %~dp0   ^(project code and build output^)
 echo   - D:\Dev\flutter                   ^(Flutter SDK^)
-echo   - C:\Users\a2131\.gradle           ^(Gradle dependency caches^)
+echo   - %USERPROFILE%\.gradle            ^(Gradle dependency caches^)
 echo   - java.exe / dart.exe processes
 echo.
 echo Now re-run the build script ^("yi jian chu shi hua gou jian.cmd" - the one with a Chinese name in this folder^).

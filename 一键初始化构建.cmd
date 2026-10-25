@@ -8,7 +8,7 @@ set FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 set PUB_HOSTED_URL=https://pub.flutter-io.cn
 set ANDROID_HOME=D:\Dev\android-sdk
 
-cd /d D:\A_WorkBuddy_Project\nianlun
+cd /d %~dp0
 
 echo ============================================
 echo   nianlun - build debug apk
@@ -41,7 +41,7 @@ if errorlevel 1 goto :fail
 echo.
 echo ============================================
 echo   BUILD SUCCESS
-echo   APK: D:\A_WorkBuddy_Project\nianlun\build\app\outputs\flutter-apk\app-debug.apk
+echo   APK: %~dp0build\app\outputs\flutter-apk\app-debug.apk
 echo   Copy it to your phone and install.
 echo ============================================
 goto :end
